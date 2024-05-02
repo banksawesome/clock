@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .clock {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 2px solid black;
+        }
+
+        .hour-hand,
+        .minute-hand,
+        .second-hand {
+            position: absolute;
+            background-color: black;
+            transform-origin: bottom center;
+        }
+
+        .hour-hand {
+            width: 8px;
+            height: 70px;
+            top: 65px;
+            left: 96px;
+            border-radius: 4px 4px 0 0;
+        }
+
+        .minute-hand {
+            width: 4px;
+            height: 90px;
+            top: 45px;
+            left: 98px;
+            border-radius: 4px 4px 0 0;
+        }
+
+        .second-hand {
+            width: 2px;
+            height: 100px;
+            top: 35px;
+            left: 99px;
+            background-color: red;
+            border-radius: 4px 4px 0 0;
+        }
+
+        .center-circle {
+            position: absolute;
+            background-color: black;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            top: 94px;
+            left: 94px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="clock">
+        <div class="hour-hand"></div>
+        <div class="minute-hand"></div>
+        <div class="second-hand"></div>
+        <div class="center-circle"></div>
+    </div>
+
+    <script>
+        function rotateClockHands() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+
+            const hourHand = document.querySelector('.hour-hand');
+            const minuteHand = document.querySelector('.minute-hand');
+            const secondHand = document.querySelector('.second-hand');
+
+            const hourRotation = (hours * 30) + (minutes / 2);
+            const minuteRotation = (minutes * 6) + (seconds / 10);
+            const secondRotation = seconds * 6;
+
+            hourHand.style.transform = `rotate(${hourRotation}deg)`;
+            minuteHand.style.transform = `rotate(${minuteRotation}deg)`;
+            secondHand.style.transform = `rotate(${secondRotation}deg)`;
+        }
+
+        setInterval(rotateClockHands, 1000);
+
+    </script>
+</body>
+
+</html>
